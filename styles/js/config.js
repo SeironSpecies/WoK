@@ -15,7 +15,7 @@ let charadex = {};
 /* Any preview links will still show Charadex's information
 /* ==================================================================== */
 charadex.site = {
-  title: "Charadex",
+  title: "World of Kepir",
   url: "https://charadex-team.github.io/charadex-v1.0/",
   description: `A tool for organizing small ARPGs and species.`
 }
@@ -26,11 +26,13 @@ charadex.site = {
 /* ==================================================================== */
 charadex.sheet = {
 
-  id: "1GwgfLizD3HQCieGia6di-TfU4E3EipT9Jb0BDZQwNak",
+  id: "XTFzUgt1Lx4Kxk2Q8yQYRx_k2QG9HAx-7qGwb-XQ",
 
   pages: {
     masterlist:    "masterlist",
     masterlistLog: "masterlist log",
+    eggml:    "egg masterlist",
+    eggmasterlistLog: "egg masterlist log",
     inventory:     "inventory",
     inventoryLog:  "inventory log",
     items:         "items",
@@ -42,12 +44,12 @@ charadex.sheet = {
 
   options: {
 
-    designTypes: ['All', 'Official Design', 'Guest Design', 'MYO Slot', 'MYO Design'],
-    statuses: ['All', 'Resell', 'Trade', 'Gift', 'Voided', 'For Sale', 'Purchased'],
-    rarity: ['All', 'Common', 'Uncommon', 'Rare', 'Very Rare', 'Legendary'],
-    species: ['All', 'Dog', 'Cat', 'Bunny'],
-    itemTypes: ['All', 'Currency', 'MYO Slot', 'Pet', 'Trait', 'Misc'],
-    traitTypes: ['All', 'Ears', 'Eyes', 'Body', 'Limbs', 'Tails', 'Misc', 'Mutations']
+    designTypes: ['All', 'Staff NPC', 'NPC', 'Owner Made', 'MYO', 'MYO Custom', 'Adopt', 'Semi Custom', 'Egg MYO'],
+    statuses: ['All', 'Unsold', 'Resell', 'Gifted', 'Voided', 'Trades', 'MYO', 'NPC', 'Egg MYO'],
+    rarity: ['All', 'Common', 'Uncommon', 'Rare', 'Legendary', 'Anomoly', 'Limited', 'Event', 'Mythical'],
+    species: ['All', 'Shaousi', 'Azevian', 'zapian', 'Dracian', 'Animalian', 'Mage Drake', 'Moragddon'],
+    itemTypes: ['All', 'Currency', 'MYO', 'Items', 'Event', 'Breeding'],
+    traitTypes: ['All', 'Tassels', 'Bodily', 'Halo', 'Crest', 'Tail', 'False Wings', 'Whisker', 'Mutations', 'Misc' ]
 
   }
 
@@ -309,6 +311,83 @@ charadex.page.masterlist = {
 
   sheetPage: charadex.sheet.pages.masterlist,
   sitePage: 'masterlist',
+  dexSelector: 'charadex',
+  profileProperty: 'design',
+
+  sort: {
+    toggle: true,
+    key: "id",
+    order: "desc",
+    parameters: []
+  },
+
+  pagination: {
+    toggle: true,
+    bottomToggle: true,
+    amount: 12,
+  },
+
+  filters: {
+    toggle: true,
+    parameters: {
+      'Design Type': charadex.sheet.options.designTypes,
+      'Status': charadex.sheet.options.statuses,
+      'Rarity': charadex.sheet.options.rarity,
+    }
+  },
+
+  fauxFolder: {
+    toggle: true,
+    folderProperty: 'Species',
+    parameters: charadex.sheet.options.species,
+  },
+
+  search: {
+    toggle: true,
+    filterToggle: true,
+    parameters: ['All', 'ID', 'Design', 'Owner', 'Designer', 'Artist', 'Traits', 'Codename', 'Name', 'Level']
+  },
+
+  prevNext: {
+    toggle: true,
+  },
+
+  relatedData: {
+
+    [charadex.sheet.pages.masterlistLog]: {
+
+      sheetPage: charadex.sheet.pages.masterlistLog,
+      primaryProperty: 'id',
+      relatedProperty: 'id',
+      dexSelector: 'log',
+      profileProperty: 'design',
+      profileToggle: false,
+
+      sort: {
+        toggle: true,
+        key: "timestamp",
+        order: "desc",
+        parameters: []
+      },
+
+      pagination: {
+        toggle: true,
+        bottomToggle: false,
+        amount: 12,
+      },
+
+    }
+
+  }
+
+};
+
+/* Egg Masterlist
+/* --------------------------------------------------------------- */
+charadex.page.eggml = {
+
+  sheetPage: charadex.sheet.pages.masterlist,
+  sitePage: 'egg masterlist',
   dexSelector: 'charadex',
   profileProperty: 'design',
 
